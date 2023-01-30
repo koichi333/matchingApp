@@ -24,6 +24,7 @@ onsubmitの設定の最後に"return false;"を追加。
 
 <script>
     const elementInputMessage = document.getElementById( "input_message" );
+    
 
     {{-- formのsubmit処理 --}}
     function onsubmit_Form()
@@ -68,8 +69,8 @@ onsubmitの設定の最後に"return false;"を追加。
                 let elementMessage = document.createElement( "div" );
                 elementMessage.textContent = strMessage;
                 elementLi.append( elementMessage );
-                elementListMessage.prepend( elementLi );  // リストの一番上に追加
-                //elementListMessage.append( elementLi ); // リストの一番下に追加
+                // elementListMessage.prepend( elementLi );  // リストの一番上に追加
+                elementListMessage.append( elementLi ); // リストの一番下に追加
             });
         } );
 </script>
