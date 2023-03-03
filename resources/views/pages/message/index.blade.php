@@ -17,14 +17,14 @@
 onsubmitの設定の最後に"return false;"を追加。
 (return false;の結果として、submitが中断され、ページリロードは行われない。）--}}
 <form method="post" action="" onsubmit="onsubmit_Form(); return false;">
-    メッセージ : <input type="text" id="input_message" autocomplete="off" />
+    メッセージ : <input type="text" id="input_message" name="message" autocomplete="off" />
     <button type="submit">送信</button>
 </form>
 
 
 <script>
     const elementInputMessage = document.getElementById( "input_message" );
-    
+
 
     {{-- formのsubmit処理 --}}
     function onsubmit_Form()
@@ -62,15 +62,19 @@ onsubmitの設定の最後に"return false;"を追加。
             {
                 console.log(e);
                 {{-- メッセージの整形 --}}
+                let strName = e.message.name;
                 let strMessage = e.message.body;
 
                 {{-- 拡散されたメッセージをメッセージリストに追加 --}}
-                let elementLi = document.createElement( "li" );
-                let elementMessage = document.createElement( "div" );
+                let elementLi = document.createElement("li");
+                let elementName = document.createElement("strong");
+                let elementMessage = document.createElement("div");
+                elementName.textContent = strName;
                 elementMessage.textContent = strMessage;
-                elementLi.append( elementMessage );
-                // elementListMessage.prepend( elementLi );  // リストの一番上に追加
-                elementListMessage.append( elementLi ); // リストの一番下に追加
+                elementLi.append(elementName);
+                elementLi.append(elementMessage);
+                elementListMessage.prepend( elementLi );  // リストの一番上に追加
+                // elementListMessage.append( elementLi ); // リストの一番下に追加
             });
         } );
 </script>
