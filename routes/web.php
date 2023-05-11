@@ -21,12 +21,12 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-    // Route::get('/done', function(){
-    //     return view('done');
-    // })->name('done');
+// Route::get('/done', function(){
+//     return view('done');
+// })->name('done');
 
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [UserController::class, 'index'])->name('users.index');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'index'])->name('users.index');
@@ -37,4 +37,5 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/message', [MessageController::class, 'index'])->name('message.index');
     Route::post('/message', [MessageController::class, 'sendMessage'])->name('message.sendMessage');
+    Route::get('/result/ajax', [MessageController::class, 'getData']);
 });

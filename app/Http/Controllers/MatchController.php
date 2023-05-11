@@ -15,7 +15,7 @@ class MatchController extends Controller
         // 自分へいいねしてくれたユーザーIDs
         $likedUserIds = Swipe::where('to_user_id', Auth::user()->id)->where('is_like', true)->pluck('from_user_id');
 
-        // 自分へいいねしてくれたユーザーへ自分がいいねhしたユーザー　＝　マッチしたユーザー
+        // 自分へいいねしてくれたユーザーへ自分がいいねしたユーザー　＝　マッチしたユーザー
         $mathcedUsers = Swipe::where('from_user_id', Auth::user()->id)->whereIn('to_user_id', $likedUserIds)->where('is_like', true)->with('toUser')->get();
 
         return view('pages.match.index', [
