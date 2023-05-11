@@ -17,19 +17,19 @@ class SwipeController extends Controller
             'is_like'       => $request->input('is_like'),
         ]);
 
-        // 自分へいいねしてくれたユーザーIDs
-        $likedUserIds = Swipe::where('to_user_id', Auth::user()->id)->where('is_like', true)->pluck('from_user_id');
-        // 自分へいいねしてくれたユーザーへ自分がいいねしたユーザー　＝　マッチしたユーザー
-        $mathcedUsers = Swipe::where('from_user_id', Auth::user()->id)->whereIn('to_user_id', $likedUserIds)->where('is_like', true)->with('toUser')->get();
+        // // 自分へいいねしてくれたユーザーIDs
+        // $likedUserIds = Swipe::where('to_user_id', Auth::user()->id)->where('is_like', true)->pluck('from_user_id');
+        // // 自分へいいねしてくれたユーザーへ自分がいいねしたユーザー　＝　マッチしたユーザー
+        // $mathcedUsers = Swipe::where('from_user_id', Auth::user()->id)->whereIn('to_user_id', $likedUserIds)->where('is_like', true)->with('toUser')->get();
 
-        if (!is_null($mathcedUsers->id)) {
-            Pair::create(
-                [
-                    'idA' => Auth::user()->id,
-                    'idB' => 11,
-                ]
-            );
-        }
+        // if (!is_null($mathcedUsers->id)) {
+        //     Pair::create(
+        //         [
+        //             'idA' => Auth::user()->id,
+        //             'idB' => 11,
+        //         ]
+        //     );
+        // }
 
         return redirect(route('users.index'));
     }
